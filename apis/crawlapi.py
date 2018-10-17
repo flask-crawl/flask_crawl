@@ -1,13 +1,13 @@
-from flask import render_template,request,session
-
-from database import User,Adcode,Scenecode,Scrape_Missions,db
+from flask import render_template, request, session, Blueprint
+from database import User,Adcode,Scenecode,ScrapeMissions,db
 from decorators import login_required
+from config import KEYS
+crawl = Blueprint('crawl',__name__)
 
 
-
-@app.route('/crawl/',methods=['GET', 'POST'])
+@crawl.route('/crawl/',methods=['GET', 'POST'])
 @login_required
-def crawl():
+def spider():
 
     if request.method == 'GET':
         return render_template('crawl.html')
@@ -53,14 +53,11 @@ def crawl():
             db.session.add(mission)
             db.session.commit()
 
-            msg = sc.update(mission)
-
-
             return render_template("crawl.html", username=username, email=email, city=city, adcode=adcode,
-                                   scene=scene, scenecode=scenecode,msg=msg)
+                                   scene=scene, scenecode=scenecode)
 
 
-@app.route('/reconfirm/',methods=['GET','POST'])
+@crawl.route('/reconfirm/',methods=['GET','POST'])
 @login_required
 def reconfirm():
     if request.method == 'GET':
@@ -85,4 +82,3 @@ def reconfirm():
         else:
             return '暂未实现,请联系管理员'
 
-            # return redirect(url_for('show',scene=mission.scene,city=mission.city))

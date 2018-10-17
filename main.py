@@ -10,6 +10,9 @@ from database import db,User
 import config
 from apis.userapi import user
 from apis.indexapi import index
+from apis.analysisapi import analysis
+from apis.noteapi import note
+from apis.crawlapi import crawl
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -18,7 +21,9 @@ app.config.from_object(config)
 db.init_app(app)
 app.register_blueprint(blueprint=user)
 app.register_blueprint(blueprint=index)
-
+app.register_blueprint(blueprint=crawl)
+app.register_blueprint(blueprint=analysis)
+app.register_blueprint(blueprint=note)
 
 @app.context_processor
 def my_context_processor():
