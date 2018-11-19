@@ -8,7 +8,10 @@
 {% endblock %}
 
 {% block main %}
-<form action="/analysis/new_mission" method="POST" style="margin-top: 300px; border-style: dashed; border-color: #2e6da4; border-width: thin">
+<form action="/analysis/data_search" method="POST" style="margin-top: 300px; border-style: dashed; border-color: #2e6da4; border-width: thin">
+        <div class="form-group">
+            <label for="city">{{ city }}</label>
+        </div>
 
     <div class="form-group col-lg-6" style="float: left; width: 30%;">
             <label for="scenes" style="float: left;">选择场景</label>
@@ -31,6 +34,93 @@
 
 
   <button type="submit" class="btn btn-default" style="margin-left: 30px">提交</button>
+
+
+<div class="table-responsive" style="overflow: scroll; height: 500px">
+                <table class="table table-striped table-sm">
+                 <caption>关联数据</caption>
+                <thead>
+                    <tr>
+                        <td>dt </td>
+                        <td>province </td>
+                        <td>city </td>
+                        <td>region </td>
+                        <td>cgi </td>
+                        <td>tac </td>
+                        <td>chinesename </td>
+                        <td>covertype </td>
+                        <td>scenario </td>
+                        <td>vendor </td>
+                        <td>earfcn </td>
+                        <td>nettype </td>
+                        <td>pci </td>
+                        <td>iscore </td>
+                        <td>gpslat </td>
+                        <td>gpslng </td>
+                        <td>bdlat </td>
+                        <td>bdlng </td>
+                        <td>angle </td>
+                        <td>height </td>
+                        <td>totaltilt </td>
+                        <td>iscounty  </td>
+                        <td>isauto </td>
+                        <td>flag </td>
+                        <td>residential_flag </td>
+                        <td>hospital_flag </td>
+                        <td>beauty_spot_flag </td>
+                        <td>college_flag </td>
+                        <td>food_centre_flag </td>
+                        <td>subway_flag </td>
+                        <td>high_speed_flag </td>
+                        <td>high_speed_rail_flag </td>
+                        <td>viaduct_flag </td>
+                        <td>high_rise_flag </td>
+                    </tr>
+                </thead>
+                    {% for i in commonparameters_tagged %}
+                        <tr>
+                            <td>{{ i.dt }}</td>
+                            <td>{{ i.province }}</td>
+                            <td>{{ i.city }}</td>
+                            <td>{{ i.region }}</td>
+                            <td>{{ i.cgi }}</td>
+                            <td>{{ i.tac}}</td>
+                            <td>{{ i.chinesename }}</td>
+                            <td>{{ i.covertype }}</td>
+                            <td>{{ i.scenario }}</td>
+                            <td>{{ i.vendor }}</td>
+                            <td>{{ i.earfcn }}</td>
+                            <td>{{ i.nettype }}</td>
+                            <td>{{ i.pci }}</td>
+                            <td>{{ i.iscore }}</td>
+                            <td>{{ i.gpslat }}</td>
+                            <td>{{ i.gpslng }}</td>
+                            <td>{{ i.bdlat }}</td>
+                            <td>{{ i.bdlng }}</td>
+                            <td>{{ i.angle }}</td>
+                            <td>{{ i.height }}</td>
+                            <td>{{ i.totaltilt }}</td>
+                            <td>{{ i.iscounty }}</td>
+                            <td>{{ i.isauto }}</td>
+                            <td>{{ i.flag }}</td>
+                            <td>{{ i.residential_flag }}</td>
+                            <td>{{ i.hospital_flag }}</td>
+                            <td>{{ i.beauty_spot_flag }}</td>
+                            <td>{{ i.college_flag }}</td>
+                            <td>{{ i.food_centre_flag }}</td>
+                            <td>{{ i.subway_flag }}</td>
+                            <td>{{ i.high_speed_flag }}</td>
+                            <td>{{ i.high_speed_rail_flag }}</td>
+                            <td>{{ i.viaduct_flag }}</td>
+                            <td>{{ i.high_rise_flag }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+</form>
+<form action="/analysis/data_search/download/",method="GET">
+    <input type="button" class="btn btn-primary"
+   	data-toggle="button" name="download" value="下载" onclick="location.href='{{ url_for('analysis.download2')}}'">
 </form>
 
 <script>
@@ -53,12 +143,6 @@
     })();
 
 </script>
-
-
-</form>
-
-
-
 <script>
 $(function() {
     $(".dropdown-toggle").dropdown('toggle');

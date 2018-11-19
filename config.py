@@ -3,14 +3,14 @@ import os
 SECRET_KEY = os.urandom(24)
 
 
-HOST = '127.0.0.1'
+HOST = '10.254.188.244'
 PORT = 3306
-USER = 'root'
+USER = 'fengwei'
 PASSWD =  '19900411'
-DB = 'flask_mapservice'
+DB = 'flaskmap'
 CHARSET = 'utf8'
-ADSL_SERVER_URL = 'http://223.105.3.170:18888'
-ADSL_SERVER_AUTH = ('adsl_proxy', 'changeProxyIp')
+ADSL_SERVER_URL = 'http://47.107.98.141:5012/item/adsl_server_3'
+ADSL_SERVER_AUTH = ('adsl_proxy_server', 'change_adsl_proxy_ip')
 
 KEYS = ['f628174cf3d63d9a3144590d81966cbd',
        '6cb7b3226b79fb9643ea4a72678db2e0',
@@ -32,8 +32,13 @@ KEYS = ['f628174cf3d63d9a3144590d81966cbd',
 
 SQLALCHEMY_DATABASE_URI= 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(USER,PASSWD,HOST,PORT,DB)
 
-SPIDER_PATH = r'C:\Users\X1Carbon\Desktop\爬虫项目\MapCrawler_test\MapCrawler'
+SPIDER_PATH = r'\home\fengwei\crawl\MapCrawler\MapCrawler'
 MAX_PROCESS = 1
 SQLALCHEMY_TRACK_MODIFICATIONS=False
 
-TABLE_NAME = 'GaodeMapScene_test'
+TABLE_NAME_INDEX = 'gaodemapscene'
+TABLE_NAME_ANALYSIS = 'commonparameters_tagged'
+
+UPLOAD_FOLDER = r'C:\Users\X1Carbon\Desktop'
+ALLOWED_EXTENSIONS = set(['csv','xlsx','xls'])
+DIRECTORY = os.getcwd()

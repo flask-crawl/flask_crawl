@@ -8,13 +8,18 @@
 {% endblock %}
 
 {% block main %}
-<form action="/analysis/new_mission" method="POST" style="margin-top: 300px; border-style: dashed; border-color: #2e6da4; border-width: thin">
-  <div class="form-group col-lg-8" style="margin-top: 10px;width: 100%">
-    <label for="">&nbsp;&nbsp;&nbsp;工参文件</label>
-      <a class="a-upload" herf="#">
-          <input type="file" id="">选择文件
-      </a>
-      </div>
+<form action="upload"  enctype="multipart/form-data" method="POST" style="margin-top: 300px">
+{#  <div class="form-group col-lg-8" style="margin-top: 10px;width: 100%">#}
+{#    <label for="">&nbsp;&nbsp;&nbsp;请上传工参文件</label>#}
+{#      <a class="a-upload" herf="#">#}
+          <input type="file" name="file">
+          <input type=submit value=Upload>
+{#      </a>#}
+{#      </div>#}
+</form>
+
+
+    <form action="/analysis/new_mission" method="POST" style="margin-top: 300px; border-style: dashed; border-color: #2e6da4; border-width: thin">
     <div class="form-group col-lg-6" style="float: left; width: 30%;">
             <label for="scenes" style="float: left;">选择场景</label>
                 <select class="form-control col-lg-4" id="scenes" name="scene" >

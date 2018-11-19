@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,redirect,url_for,session,send_from_directory,flash,g,Blueprint,get_flashed_messages
-from config import HOST,DB,PASSWD,PORT,USER,ADSL_SERVER_AUTH,ADSL_SERVER_URL,KEYS,TABLE_NAME
+from config import HOST,DB,PASSWD,PORT,USER,ADSL_SERVER_AUTH,ADSL_SERVER_URL,KEYS
 import config
 from database import User,Adcode,Scenecode,ScrapeMissions,db
 import pymysql

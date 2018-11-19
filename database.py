@@ -1,5 +1,6 @@
 # conding=utf-8
-
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from flask_sqlalchemy import SQLAlchemy, model
 from datetime import datetime
 from config import SQLALCHEMY_DATABASE_URI
@@ -8,6 +9,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 db = SQLAlchemy()
 
+engine = create_engine(SQLALCHEMY_DATABASE_URI)
+DBSession = sessionmaker(bind=engine)
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -89,7 +92,7 @@ class Scenecode(db.Model):
     __tablename__ = 'scenecode'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     scene = db.Column(db.String(50), nullable=False)
-    scenecode = db.Column(db.Integer, nullable=False)
+    scenecode = db.Column(db.String(50), nullable=False)
 
 
 
@@ -126,7 +129,7 @@ class ScrapeMissions(db.Model):
 
 
 class GaodeMapScene(db.Model):
-    __tablename__ = 'GaodeMapScene'
+    __tablename__ = 'gaodemapscene'
 
     id = db.Column(db.String(20),primary_key=True)
 
@@ -164,14 +167,14 @@ class GaodeMapScene(db.Model):
 
 
 class CommonParameters(db.Model):
-    __tablename__ = 'CommonParameters'
+    __tablename__ = 'commonparameters'
     dt = db.Column(db.String(50))
     province = db.Column(db.String(50))
     city = db.Column(db.String(50))
     region = db.Column(db.String(50))
     cgi = db.Column(db.String(50), primary_key=True)
     tac = db.Column(db.Integer, default=0)
-    chinesename = db.Column(db.String(50))
+    chinesename = db.Column(db.String(200))
     covertype = db.Column(db.String(50))
     scenario = db.Column(db.String(50))
     vendor = db.Column(db.String(50))
@@ -189,14 +192,50 @@ class CommonParameters(db.Model):
     iscounty  = db.Column(db.Boolean, default=False)
     isauto = db.Column(db.Boolean, default=False)
     flag = db.Column(db.Boolean, default=False)
-    residential_flag = db.Column(db.Boolean, default=False)
-    hospital_flag = db.Column(db.Boolean, default=False)
-    beauty_spot_flag = db.Column(db.Boolean, default=False)
-    college_flag = db.Column(db.Boolean, default=False)
-    food_centre_flag = db.Column(db.Boolean, default=False)
-    subway_flag = db.Column(db.Boolean, default=False)
-    high_speed_flag = db.Column(db.Boolean, default=False)
-    high_speed_rail_flag = db.Column(db.Boolean, default=False)
-    viaduct_flag = db.Column(db.Boolean, default=False)
-    high_rise_flag = db.Column(db.Boolean, default=False)
+    # residential_flag = db.Column(db.Boolean, default=False)
+    # hospital_flag = db.Column(db.Boolean, default=False)
+    # beauty_spot_flag = db.Column(db.Boolean, default=False)
+    # college_flag = db.Column(db.Boolean, default=False)
+    # food_centre_flag = db.Column(db.Boolean, default=False)
+    # subway_flag = db.Column(db.Boolean, default=False)
+    # high_speed_flag = db.Column(db.Boolean, default=False)
+    # high_speed_rail_flag = db.Column(db.Boolean, default=False)
+    # viaduct_flag = db.Column(db.Boolean, default=False)
+    # high_rise_flag = db.Column(db.Boolean, default=False)
 
+class CommonParameters_tagged(db.Model):
+    __tablename__ = 'commonparameters_tagged'
+    dt = db.Column(db.String(50))
+    province = db.Column(db.String(50))
+    city = db.Column(db.String(50))
+    region = db.Column(db.String(50))
+    cgi = db.Column(db.String(50), primary_key=True)
+    tac = db.Column(db.Integer, default=0)
+    chinesename = db.Column(db.String(200))
+    covertype = db.Column(db.String(50))
+    scenario = db.Column(db.String(50))
+    vendor = db.Column(db.String(50))
+    earfcn = db.Column(db.Integer, default=0)
+    nettype = db.Column(db.String(50))
+    pci = db.Column(db.Integer, default=0)
+    iscore = db.Column(db.Boolean, default=False)
+    gpslat = db.Column(db.Float(scale=10))
+    gpslng = db.Column(db.Float(scale=10))
+    bdlat = db.Column(db.Float(scale=10))
+    bdlng = db.Column(db.Float(scale=10))
+    angle = db.Column(db.Integer, default=0)
+    height = db.Column(db.String(50))
+    totaltilt = db.Column(db.Float(scale=10))
+    iscounty  = db.Column(db.Boolean, default=False)
+    isauto = db.Column(db.Boolean, default=False)
+    flag = db.Column(db.Boolean, default=False)
+    residential_flag = db.Column(db.String(50), default=False)
+    hospital_flag = db.Column(db.String(50), default=False)
+    beauty_spot_flag = db.Column(db.String(50), default=False)
+    college_flag = db.Column(db.String(50), default=False)
+    food_centre_flag = db.Column(db.String(50), default=False)
+    subway_flag = db.Column(db.String(50), default=False)
+    high_speed_flag = db.Column(db.String(50), default=False)
+    high_speed_rail_flag = db.Column(db.String(50), default=False)
+    viaduct_flag = db.Column(db.String(50), default=False)
+    high_rise_flag = db.Column(db.String(50), default=False)
